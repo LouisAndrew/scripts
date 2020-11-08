@@ -2,7 +2,7 @@
 
 # boilerplate snippets.
 index_snippet = '''
-import { $1 } from './$2';
+import $1 from '$2';
 
 export default $1;'''
 
@@ -80,23 +80,27 @@ with_options = len(sys.argv) > 3
 
 import os
 
-path_with_src = os.getcwd() + '/src/' + path + '/' + component_name
+root_dir = os.getcwd()
+
+path_with_src = root_dir + '/src/' + path + '/' + component_name
 
 # first create directory for the component.
 os.makedirs(path_with_src, exist_ok=True)
 os.chdir(path_with_src)
-os.makedirs('__tests__', exist_ok=True)
 
 # create basic components!
 index_file = open('index.ts', 'w+')
 initial_file = open(component_name + '.tsx', 'w+')
-test_file = open('__tests__/' + component_name + '.test.tsx', 'w+')
 
 formatted_component_name = format_string(component_name)
 
 # write snippets to its file.
 index_file.write(index_snippet.replace('$1', formatted_component_name).replace('$2', component_name))
 initial_file.write(initial_file_snippet.replace('$1', formatted_component_name))
-test_file.write(test_file_snippet.replace('$1', formatted_component_name).replace('$2', component_name))
 
-# echo boilerplate snippets!
+# create test directory..
+os.chdir(root_dir) # go back to project root dir.
+test_file = open(path +'__tests__/' + component_name + '.test.tsx', 'w+')
+
+# write snippets into test directory.
+test_file.write(test_file_snippet.replace('$1', formatted_component_name).replace('$2', 'components/' + path + '/' + component_name))
