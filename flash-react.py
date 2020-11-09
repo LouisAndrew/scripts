@@ -2,7 +2,7 @@
 
 # boilerplate snippets.
 index_snippet = '''
-import $1 from '$2';
+import {$1} from './$2';
 
 export default $1;'''
 
@@ -32,7 +32,7 @@ import renderer from 'react-test-renderer'
 import { cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import  $1  from '$2'
+import $1  from '$2'
 
 describe('$1', () => {
     const Element = <$1 />
