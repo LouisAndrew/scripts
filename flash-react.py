@@ -32,7 +32,7 @@ import renderer from 'react-test-renderer'
 import { cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import { $1 } from '../$2'
+import  $1  from '$2'
 
 describe('$1', () => {
     const Element = <$1 />
@@ -99,8 +99,8 @@ index_file.write(index_snippet.replace('$1', formatted_component_name).replace('
 initial_file.write(initial_file_snippet.replace('$1', formatted_component_name))
 
 # create test directory..
-os.chdir(root_dir) # go back to project root dir.
-test_file = open(path +'__tests__/' + component_name + '.test.tsx', 'w+')
+os.chdir(root_dir + '/src') # go back to project root dir.
+test_file = open('__tests__/' + path + '/' + component_name + '.test.tsx', 'w+')
 
 # write snippets into test directory.
-test_file.write(test_file_snippet.replace('$1', formatted_component_name).replace('$2', 'components/' + path + '/' + component_name))
+test_file.write(test_file_snippet.replace('$1', formatted_component_name).replace('$2', path + '/' + component_name))
